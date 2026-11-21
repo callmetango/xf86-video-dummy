@@ -65,6 +65,7 @@ static Bool     dummyDriverFunc(ScrnInfoPtr pScrn, xorgDriverFuncOp op,
 #define DUMMY_MAJOR_VERSION PACKAGE_VERSION_MAJOR
 #define DUMMY_MINOR_VERSION PACKAGE_VERSION_MINOR
 #define DUMMY_PATCHLEVEL PACKAGE_VERSION_PATCHLEVEL
+#define DUMMY_VERSION_SUFFIX PACKAGE_VERSION_SUFFIX
 
 #define DUMMY_MAX_WIDTH 32767
 #define DUMMY_MAX_HEIGHT 32767
@@ -398,6 +399,10 @@ Bool DUMMYAdjustScreenPixmap(ScrnInfoPtr pScrn, int width, int height)
  * Its name has to be the driver name followed by ModuleData
  */
 _X_EXPORT XF86ModuleData dummyModuleData = { &dummyVersRec, dummySetup, NULL };
+
+#ifdef XF86_MODULE_VERSION_SUFFIX
+XF86_MODULE_VERSION_SUFFIX(dummy, DUMMY_VERSION_SUFFIX);
+#endif
 
 static void*
 dummySetup(void *module, void *opts, int *errmaj, int *errmin)
